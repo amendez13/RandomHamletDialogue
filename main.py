@@ -46,17 +46,17 @@ def fetch_hamlet_dialogue(url):
             lines = []
             for a in blockquote.find_all('a'):
                 line = a.get_text(strip=True)
-            if line:
-                lines.append(line)
+                if line:
+                    lines.append(line + "\n")
             if lines:
-                dialogues.append(f"{character}: {' '.join(lines)}")
+                dialogues.append(f"{character}:\n {' '.join(lines)}")
         
         #size of dialogues
         print(f"Total dialogues found: {len(dialogues)}" + "\n")
 
         # Print a sample dialogue piece (first 5 lines)
         if dialogues:
-            print("Sample Dialogue from Hamlet:")
+            print("Sample Dialogue from Hamlet:\n")
             print("\t" + random.choice(dialogues))
         else:
             print("No dialogue found. Check the HTML structure or URL.")

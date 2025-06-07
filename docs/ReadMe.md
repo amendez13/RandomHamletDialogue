@@ -5,6 +5,7 @@ Setup Development Container
 * docker build -t dev-container:24.04 .
 * docker run -it --name dev-cont-instance dev-container:24.04
 * docker container rm -f dev-cont-instance // This command forcibly removes the container
+* docker container rm -f dev-cont-instance ; docker build -t dev-container:24.04 .; docker run -it --name dev-cont-instance dev-container:24.04
 
 Python setup:
 
