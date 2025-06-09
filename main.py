@@ -4,27 +4,24 @@ import re
 import ssl
 import random
 from requests.adapters import HTTPAdapter
-from urllib3.util.ssl_ import create_urllib3_context
-
-# Create a custom SSL context
-context = ssl.create_default_context()
-context.set_ciphers('DEFAULT@SECLEVEL=1')  # Lower security level to allow weak DH keys
 
 # Custom adapter to use the SSL context
 class SSLContextAdapter(HTTPAdapter):
+    def __init__(self, *args, **kwargs):
+        self.ssl_context = ssl.create_default_context()
+        self.ssl_context.set_ciphers('ECDHE-RSA-AES256-GCM-SHA384')
+        super().__init__(*args, **kwargs)
+
     def init_poolmanager(self, *args, **kwargs):
-        kwargs['ssl_context'] = context
+        kwargs['ssl_context'] = self.ssl_context
         return super().init_poolmanager(*args, **kwargs)
     
-def fetch_hamlet_dialogue(url):
+def fetch_hamlet_dialogue(url, timeout=10):
     try:
-        # Create a session and mount the custom adapter
         session = requests.Session()
         session.mount('https://', SSLContextAdapter())
-
-        # Fetch the webpage with custom SSL context
-        response = session.get(url, verify=True, timeout=10, headers={'User-Agent': 'Mozilla/5.0'})
-        response.raise_for_status()  # Check for HTTP errors
+        response = session.get(url, verify=True, timeout=timeout, headers={'User-Agent': 'Mozilla/5.0'})
+        response.raise_for_status()
         html_content = response.text
 
         # Parse HTML with BeautifulSoup
