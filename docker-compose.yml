@@ -1,0 +1,15 @@
+services:
+  hamlet-dialog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hamlet-diag-container:3.12-slim 
+    user: userdev
+    container_name: hamlet-diag-container-instance
+    volumes:
+      - ./hamlet_quote.html:/home/userdev/hamlet_quote.html
+    environment:
+      - PYTHONUNBUFFERED=1
+    tty: true
+    stdin_open: true
+    command: /bin/bash -c "source /home/userdev/venv/bin/activate && python main.py"

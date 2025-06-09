@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamlet Quote</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Garamond&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://www.transparenttextures.com/patterns/parchment.png');
+            background-color: #f4e4bc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Garamond', serif;
+            color: #3c2f2f;
+        }
+        .quote-container {
+            background: rgba(255, 245, 220, 0.9);
+            border: 3px solid #8b6f47;
+            border-radius: 10px;
+            padding: 40px;
+            max-width: 600px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        .quote-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: url('https://www.transparenttextures.com/patterns/fancy-deboss.png');
+            border: 2px solid #8b6f47;
+            border-radius: 50%;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2em;
+            color: #6b4e31;
+            margin-bottom: 10px;
+        }
+        .character {
+            font-weight: bold;
+            font-size: 1.5em;
+            color: #8b6f47;
+            margin-bottom: 15px;
+        }
+        .dialogue {
+            font-size: 1.2em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #6b4e31;
+        }
+    </style>
+</head>
+<body>
+    <div class="quote-container">
+        <h1>A Quote from Hamlet</h1>
+        <div class="character">HAMLET</div>
+        <div class="dialogue"> Now might I do it pat, now he is praying;
+ And now I'll do't. And so he goes to heaven;
+ And so am I revenged. That would be scann'd:
+ A villain kills my father; and for that,
+ I, his sole son, do this same villain send
+ To heaven.
+ O, this is hire and salary, not revenge.
+ He took my father grossly, full of bread;
+ With all his crimes broad blown, as flush as May;
+ And how his audit stands who knows save heaven?
+ But in our circumstance and course of thought,
+ 'Tis heavy with him: and am I then revenged,
+ To take him in the purging of his soul,
+ When he is fit and season'd for his passage?
+ No!
+ Up, sword; and know thou a more horrid hent:
+ When he is drunk asleep, or in his rage,
+ Or in the incestuous pleasure of his bed;
+ At gaming, swearing, or about some act
+ That has no relish of salvation in't;
+ Then trip him, that his heels may kick at heaven,
+ And that his soul may be as damn'd and black
+ As hell, whereto it goes. My mother stays:
+ This physic but prolongs thy sickly days.
+</div>
+        <footer>William Shakespeare, Hamlet</footer>
+    </div>
+</body>
+</html>
