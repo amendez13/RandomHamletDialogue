@@ -86,7 +86,7 @@ def fetch_hamlet_dialogue(url, timeout=10, sample_size=1, generate_html=False, h
  
 def generate_html_quote(quote, output_file="hamlet_quote.html"):
     """
-    Generate an HTML page with a Hamlet quote in a Renaissance style.
+    Generate an HTML page with a Hamlet quote in an enhanced Renaissance style.
 
     Args:
         quote (str): The dialogue/quote to display.
@@ -95,84 +95,110 @@ def generate_html_quote(quote, output_file="hamlet_quote.html"):
     # Split the quote into character and dialogue
     character, dialogue = quote.split(":\n", 1) if ":\n" in quote else ("Unknown", quote)
 
-    # HTML content with Renaissance styling
+    # Format dialogue lines with indentation
+    dialogue_lines = [f"    {line}" for line in dialogue.split('\n') if line.strip()]
+    formatted_dialogue = '\n'.join(dialogue_lines)
+
+    # HTML content with enhanced styling
     html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamlet Quote</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Garamond&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         body {{
-            background: url('https://www.transparenttextures.com/patterns/parchment.png');
-            background-color: #f4e4bc;
+            background: linear-gradient(to bottom, #f5e9d3 0%, #e8d4a2 100%); /* Subtle parchment gradient */
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Crimson Text', serif;
+            color: #2b1e1e; /* Deep brown-black */
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
-            margin: 0;
-            font-family: 'Garamond', serif;
-            color: #3c2f2f;
         }}
         .quote-container {{
-            background: rgba(255, 245, 220, 0.9);
-            border: 3px solid #8b6f47;
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 600px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            background: #fffef0; /* Off-white parchment */
+            max-width: 700px;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid #a67c00; /* Gold accent */
             position: relative;
+            transition: transform 0.3s ease;
         }}
-        .quote-container::before {{
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 50px;
-            background: url('https://www.transparenttextures.com/patterns/fancy-deboss.png');
-            border: 2px solid #8b6f47;
-            border-radius: 50%;
+        .quote-container:hover {{
+            transform: translateY(-5px); /* Subtle lift on hover */
         }}
         h1 {{
-            font-family: 'Cinzel', serif;
-            font-size: 2.2em;
-            color: #6b4e31;
-            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #5c4033; /* Rich brown */
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
         }}
         .character {{
-            font-weight: bold;
-            font-size: 1.5em;
-            color: #8b6f47;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #a67c00; /* Gold */
+            text-align: center;
             margin-bottom: 15px;
+            text-transform: uppercase;
         }}
         .dialogue {{
-            font-size: 1.2em;
-            line-height: 1.6;
+            font-size: 1.3em;
+            font-style: italic;
+            line-height: 1.8;
+            color: #3c2f2f;
             white-space: pre-wrap;
-            text-align: left;
+            margin: 0 auto;
+            max-width: 90%;
+        }}
+        .divider {{
+            width: 100px;
+            height: 2px;
+            background: #a67c00;
+            margin: 20px auto;
+            opacity: 0.5;
         }}
         footer {{
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #6b4e31;
+            font-size: 1em;
+            color: #5c4033;
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+        }}
+        @media (max-width: 600px) {{
+            .quote-container {{
+                padding: 20px;
+            }}
+            h1 {{
+                font-size: 2em;
+            }}
+            .character {{
+                font-size: 1.5em;
+            }}
+            .dialogue {{
+                font-size: 1.1em;
+            }}
         }}
     </style>
 </head>
 <body>
     <div class="quote-container">
-        <h1>A Quote from Hamlet</h1>
+        <h1>Random Hamlet Quote</h1>
+        <div class="divider"></div>
         <div class="character">{character}</div>
-        <div class="dialogue">{dialogue}</div>
+        <div class="dialogue">{formatted_dialogue}</div>
+        <div class="divider"></div>
         <footer>William Shakespeare, Hamlet</footer>
     </div>
 </body>
 </html>
 """
-
     # Write to file
     try:
         with open(output_file, 'w', encoding='utf-8') as f:
@@ -184,4 +210,4 @@ def generate_html_quote(quote, output_file="hamlet_quote.html"):
 # Example usage
 if __name__ == "__main__":
     url = "https://shakespeare.mit.edu/hamlet/full.html"
-    dialogues = fetch_hamlet_dialogue(url, timeout=30, sample_size=1, generate_html=True)
+    dialogues = fetch_hamlet_dialogue(url, timeout=30, sample_size=2, generate_html=True)

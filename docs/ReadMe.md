@@ -6,6 +6,7 @@ Set up Container
 * docker run -it --name hamlet-diag-container-instance hamlet-diag-container:3.12-slim
 * docker container rm -f hamlet-diag-container-instance // This command forcibly removes the container
 * docker container rm -f hamlet-diag-container-instance ; docker build -t hamlet-diag-container:3.12-slim .; docker run -it --name hamlet-diag-container-instance hamlet-diag-container:3.12-slim
+* docker compose up
 
 Python setup:
 
